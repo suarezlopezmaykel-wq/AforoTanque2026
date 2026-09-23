@@ -73,7 +73,13 @@ jobs:
       - name: Revisar AndroidManifest del APK
         run: |
           echo "===== ANDROID MANIFEST ====="
-          unzip -p "$ROOT/app/build/outputs/apk/debug/app-debug.apk" AndroidManifest.xml | strings
+          SDK="$ANDROID_HOME"
+          AAPT=$(find "$SDK/build-tools" -name aapt -type f | sort -V | tail -1)
+          if [ -z "$AAPT" ]; then
+            echo "No se encontró aapt"
+            exit 1
+          fi
+          "$AAPT" dump badging "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
 
       - name: Subir APK
         uses: actions/upload-artifact@v4
