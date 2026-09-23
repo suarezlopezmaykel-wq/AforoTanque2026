@@ -38,7 +38,7 @@ jobs:
           fi
           echo "ROOT=$ROOT" >> "$GITHUB_ENV"
 
-            - name: Revisar proyecto Android
+      - name: Revisar proyecto Android
         run: |
           echo "===== app/build.gradle.kts ====="
           cat "$ROOT/app/build.gradle.kts"
