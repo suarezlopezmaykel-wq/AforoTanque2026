@@ -52,6 +52,13 @@ jobs:
           cd "$ROOT"
           gradle assembleDebug --stacktrace
 
+      - name: Comprobar APK generado
+        run: |
+          echo "===== APK GENERADO ====="
+          ls -lh "$ROOT/app/build/outputs/apk/debug/"
+          echo "===== RUTA Y TAMAÑO ====="
+          stat "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
+
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
