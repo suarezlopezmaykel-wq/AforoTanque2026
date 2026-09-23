@@ -64,6 +64,12 @@ jobs:
           echo "===== CONTENIDO DEL APK ====="
           unzip -l "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
 
+      - name: Buscar MainActivity en APK
+        run: |
+          echo "===== BUSCANDO MAINACTIVITY ====="
+          unzip -p "$ROOT/app/build/outputs/apk/debug/app-debug.apk" classes.dex | strings | grep -i "MainActivity" || true
+          unzip -p "$ROOT/app/build/outputs/apk/debug/app-debug.apk" classes2.dex | strings | grep -i "MainActivity" || true
+
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
