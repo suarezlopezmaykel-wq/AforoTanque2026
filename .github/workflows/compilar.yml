@@ -74,6 +74,13 @@ jobs:
         run: |
           echo "===== ANDROID MANIFEST ====="
           unzip -p "$ROOT/app/build/outputs/apk/debug/app-debug.apk" AndroidManifest.xml | strings
+
+      - name: Verificar firma y alineación del APK
+        run: |
+          echo "===== FIRMA ====="
+          apksigner verify --verbose "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
+          echo "===== ALINEACIÓN ====="
+          zipalign -c -v 4 "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
       
       - name: Subir APK
         uses: actions/upload-artifact@v4
