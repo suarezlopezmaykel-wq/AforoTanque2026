@@ -46,6 +46,7 @@ jobs:
           cat "$ROOT/settings.gradle.kts"
           echo "===== MainActivity.java ====="
           cat "$ROOT/app/src/main/java/com/aforotanque2026/MainActivity.java"
+
       - name: Compilar APK Debug
         run: |
           cd "$ROOT"
