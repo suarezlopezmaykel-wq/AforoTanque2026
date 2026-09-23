@@ -81,6 +81,16 @@ jobs:
           fi
           "$AAPT" dump badging "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
 
+      - name: Verificar firma del APK
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          if [ -z "$APKSIGNER" ]; then
+            echo "No se encontró apksigner"
+            exit 1
+          fi
+          echo "===== VERIFICACIÓN DE FIRMA ====="
+          "$APKSIGNER" verify --verbose "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
+      
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
