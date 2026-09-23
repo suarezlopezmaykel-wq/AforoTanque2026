@@ -1,11 +1,3 @@
-- name: Revisar proyecto Android
-        run: |
-          echo "===== app/build.gradle.kts ====="
-          cat "$ROOT/app/build.gradle.kts"
-          echo "===== settings.gradle.kts ====="
-          cat "$ROOT/settings.gradle.kts"
-          echo "===== MainActivity.java ====="
-          cat "$ROOT/app/src/main/java/com/aforotanque2026/MainActivity.java"
 name: Compilar APK
 
 on:
@@ -46,6 +38,14 @@ jobs:
           fi
           echo "ROOT=$ROOT" >> "$GITHUB_ENV"
 
+            - name: Revisar proyecto Android
+        run: |
+          echo "===== app/build.gradle.kts ====="
+          cat "$ROOT/app/build.gradle.kts"
+          echo "===== settings.gradle.kts ====="
+          cat "$ROOT/settings.gradle.kts"
+          echo "===== MainActivity.java ====="
+          cat "$ROOT/app/src/main/java/com/aforotanque2026/MainActivity.java"
       - name: Compilar APK Debug
         run: |
           cd "$ROOT"
