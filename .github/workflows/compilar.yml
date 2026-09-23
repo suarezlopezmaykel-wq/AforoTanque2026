@@ -59,6 +59,11 @@ jobs:
           echo "===== RUTA Y TAMAÑO ====="
           stat "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
 
+      - name: Revisar contenido del APK
+        run: |
+          echo "===== CONTENIDO DEL APK ====="
+          unzip -l "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
+
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
